@@ -93,15 +93,15 @@
         // Configuration - UPDATE THESE URLs
         const CONFIG = {
             // Base URL for the chatbot (without participant ID)
-            chatbotBaseUrl: 'http://20.13.155.179:5174/?user_id=[participant_id]',
+            chatbotBaseUrl: 'http://20.13.155.179:5174/',
             
             // Base URL for MS Forms survey (without participant ID)
             // For MS Forms, you'll typically append the ID as a query parameter
-            surveyBaseUrl: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=krXWaAhQtUObBCO-xOhs9yd_rmb5MxRMn7Q0y3m22LtUME9HMldXSzRPTlpIRk1TSzYyVlc5MFY0VC4u&r9716cb91447f4097b41f98a2e5d998ba=[participant_id]&rcba0ed3e27e04c2dbfef00e735157d48=%22I%20have%20read%20the%20participation%20information%2C%20I%20am%20aged%20over%2018%2C%20and%20I%20agree%20to%20take%20part%20in%20the%20interaction%20and%20questionnaire%22',
+            surveyBaseUrl: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=krXWaAhQtUObBCO-xOhs9yd_rmb5MxRMn7Q0y3m22LtUME9HMldXSzRPTlpIRk1TSzYyVlc5MFY0VC4u&r9716cb91447f4097b41f98a2e5d998ba=[user_id]&rcba0ed3e27e04c2dbfef00e735157d48=%22I%20have%20read%20the%20participation%20information%2C%20I%20am%20aged%20over%2018%2C%20and%20I%20agree%20to%20take%20part%20in%20the%20interaction%20and%20questionnaire%22',
             
             // Parameter name for the participant ID in URLs
-            chatbotParamName: 'participant_id',
-            surveyParamName: 'participant_id' 
+            chatbotParamName: 'user_id',
+            surveyParamName: 'user_id' 
         };
 
         // Generate a unique participant ID (UUID v4)
