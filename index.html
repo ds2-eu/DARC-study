@@ -137,7 +137,7 @@
             chatbotLink.href = buildUrl(CONFIG.chatbotBaseUrl, CONFIG.chatbotParamName, participantId);
             
             const surveyLink = document.getElementById('surveyLink');
-            surveyLink.href = CONFIG.surveyBaseUrl.replace('[participant_id]', participantId);
+            surveyLink.href = CONFIG.surveyBaseUrl.replace('[user_id]', participantId);
         }
 
         // Initialize the page
