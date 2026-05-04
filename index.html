@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS2 Research Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="DS2_logo.avif" alt="DS2 Logo" class="logo">
+            <span class="header-tagline">DataSpace DataShare 2.0</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="hero">
+            <h1>Interaction and Experience of Intelligent Assistance in Inter-organizational Data Exchange</h1>
+        </div>
+
+        <div class="card">
+            <div class="description">
+                <p>Thank you for your interest in participating in our study, <em>"Interaction and experience of intelligent assistance in inter-organizational data exchange"</em>. This study explores your experience interacting with the DARC intelligent conversational agent developed within the <a href="https://www.dataspace2.eu/" target="_blank">EU DataSpace DataShare 2.0 (DS2) project</a>. Your feedback will help improve trustworthy data sharing solutions and guide the development of the DARC chatbot.</p>
+                
+                <p>Before proceeding, please review the following information:</p>
+                <ul class="info-links">
+                    <li><a href="about.html" target="_blank">About DS2 and DARC</a></li>
+                    <li><a href="participation-info.html" target="_blank">Participation Information</a></li>
+                    <li><a href="privacy-notice.html" target="_blank">Privacy Notice</a></li>
+                </ul>
+
+                <div class="consent-checkbox">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="consentCheckbox">
+                        <span class="checkbox-text">I have read the information, I am aged over 18, and I agree to take part in the interaction and questionnaire</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="stepsCard" class="card steps-card hidden">
+            <h2 class="card-title">Participation Steps</h2>
+            
+            <div class="task-instructions">
+                <p>Please attempt the following three tasks during your interaction with the DARC chatbot. Use the chatbot as you naturally would. Describe what you are trying to do, ask questions, and follow up if something is unclear. There is no required script or sequence of steps.</p>
+                
+                <ol class="task-list">
+                    <li><strong>Get to know the EU DS2 project and its software modules.</strong></li>
+                    <li>
+                        <strong>Explore available data assets:</strong> What data assets are relevant for your domain or interests? What kind of details about those data assets would you like to know? Explore the data assets and metadata available to you.
+                        <p class="task-tip"><em>Tip:</em> The catalogue of data assets used in this study is for testing purposes and is therefore limited. If you do not find data relevant to your domain and interests, consider exploring the following example: Imagine you are interested in air quality trends. Use the DARC chatbot to discover relevant data, details about that data, and learn how you can gain access to it.</p>
+                    </li>
+                    <li>
+                        <strong>Explore organizational data sharing:</strong> What data assets do you or your organization have ownership of that you would like to share with other individuals or organizations? Are there specific conditions under which you would like to share that data? Explore how DS2 modules can support you to publish and share your data.
+                        <p class="task-tip"><em>Tip:</em> If you do not have a personal data sharing use case, consider using the following example: Imagine that you own a dataset on passenger flow in a city's public transportation system. You wish to make this data available to researchers and city planners in other data spaces. Use the DARC chatbot to find out how the DS2 modules can support you to publish and share your data, and what you would need to put in place around access control and data rights.</p>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Interact with the DARC chatbot</h3>
+                        <p>Click the button below to open the DARC chatbot. Have a conversation and explore its capabilities.</p>
+                        <a href="#" id="chatbotLink" class="btn" target="_blank">Open DARC Chatbot</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Complete the Questionnaire</h3>
+                        <p>After your interaction with the DARC Chatbot, please complete this short questionnaire about your experience.</p>
+                        <a href="#" id="surveyLink" class="btn btn-secondary" target="_blank">Open Questionnaire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="https://www.dataspace2.eu/" target="_blank">www.dataspace2.eu</a></p>
+        <p class="eu-funding">DS2 has received funding from the EU Horizon Europe Research and Innovation programme under grant agreement No. 101135967.</p>
+    </footer>
+
+    <script>
+        // Configuration - UPDATE THESE URLs
+        const CONFIG = {
+            // Base URL for the chatbot (without participant ID)
+            chatbotBaseUrl: 'http://20.13.155.179:5174/?user_id=[participant_id]',
+            
+            // Base URL for MS Forms survey (without participant ID)
+            // For MS Forms, you'll typically append the ID as a query parameter
+            surveyBaseUrl: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=krXWaAhQtUObBCO-xOhs9yd_rmb5MxRMn7Q0y3m22LtUME9HMldXSzRPTlpIRk1TSzYyVlc5MFY0VC4u&r9716cb91447f4097b41f98a2e5d998ba=[participant_id]&rcba0ed3e27e04c2dbfef00e735157d48=%22I%20have%20read%20the%20participation%20information%2C%20I%20am%20aged%20over%2018%2C%20and%20I%20agree%20to%20take%20part%20in%20the%20interaction%20and%20questionnaire%22',
+            
+            // Parameter name for the participant ID in URLs
+            chatbotParamName: 'participant_id',
+            surveyParamName: 'participant_id' 
+        };
+
+        // Generate a unique participant ID (UUID v4)
+        function generateParticipantId() {
+            // Check if ID already exists in localStorage (persists across tabs)
+            let existingId = localStorage.getItem('ds2_participantId');
+            if (existingId) {
+                return existingId;
+            }
+
+            // Generate new UUID v4
+            const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+
+            // Store in localStorage so it persists across tabs and page navigations
+            localStorage.setItem('ds2_participantId', id);
+            return id;
+        }
+
+        // Build URL with participant ID
+        function buildUrl(baseUrl, paramName, participantId) {
+            const url = new URL(baseUrl);
+            url.searchParams.append(paramName, participantId);
+            return url.toString();
+        }
+
+        // Update links with participant ID
+        function updateLinksWithParticipantId(participantId) {
+            const chatbotLink = document.getElementById('chatbotLink');
+            chatbotLink.href = buildUrl(CONFIG.chatbotBaseUrl, CONFIG.chatbotParamName, participantId);
+            
+            const surveyLink = document.getElementById('surveyLink');
+            surveyLink.href = CONFIG.surveyBaseUrl.replace('[participant_id]', participantId);
+        }
+
+        // Initialize the page
+        function init() {
+            const consentCheckbox = document.getElementById('consentCheckbox');
+            const stepsCard = document.getElementById('stepsCard');
+            
+            // Check if consent was already given (persists across tabs)
+            if (localStorage.getItem('ds2_consentGiven') === 'true') {
+                consentCheckbox.checked = true;
+                stepsCard.classList.remove('hidden');
+                // Use existing participant ID
+                const participantId = generateParticipantId();
+                updateLinksWithParticipantId(participantId);
+            }
+            
+            consentCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Generate participant ID only after consent
+                    const participantId = generateParticipantId();
+                    updateLinksWithParticipantId(participantId);
+                    
+                    localStorage.setItem('ds2_consentGiven', 'true');
+                    stepsCard.classList.remove('hidden');
+                    stepsCard.classList.add('revealed');
+                    // Scroll to the steps card
+                    stepsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    localStorage.removeItem('ds2_consentGiven');
+                    stepsCard.classList.add('hidden');
+                    stepsCard.classList.remove('revealed');
+                }
+            });
+        }
+
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
